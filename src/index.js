@@ -10,7 +10,7 @@ export default class VkPostBot {
   }
 
   /**
-   * Add post community wall
+   * Add post on community wall
    * @param params {Object} - Parameters of post
    * @param params.ownerId - (Required) community ID - negative value
    * @param params.friendsOnly - 1 — post will be available to friends only, 0 — post will be available to all users (default)
@@ -23,7 +23,6 @@ export default class VkPostBot {
     let friendsOnly = params.friendsOnly || 0;
     let fromGroup = params.fromGroup || 0;
 
-    try {
       if (!params.message) { //no message text
         if (params.attachments) { //no message, only attachments
           result = await fetch(`https://api.vk.com/method/wall.post?owner_id=${params.ownerId}&friends_only=${friendsOnly}&from_group=${fromGroup}&access_token=${this.token}&v=5.71&attachments=${params.attachments}`);
@@ -40,8 +39,5 @@ export default class VkPostBot {
         return json.response;
       }
       throw new ErrorBadRequest(json.error.error_msg);
-    } catch (error) {
-      throw new ErrorBadRequest(`${error.message}`);
-    }
   }
 }

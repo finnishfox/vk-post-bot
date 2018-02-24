@@ -35,7 +35,7 @@ Class represents bot that adds post on wall
 
 ### post
 
-Add post community wall
+Add post on community wall
 
 **Parameters**
 
